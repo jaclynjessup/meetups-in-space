@@ -4,3 +4,6 @@
 # Example:
 #
 #   Person.create(first_name: 'Eric', last_name: 'Kelly')
+
+meetup_1 = Meetup.create(name: 'Dino Concert', description: 'Watch the crete sing & dance!', location: 'Crete DUH!')
+meetup_2 = Meetup.create(name: 'PopSocket Sale', description: 'trade, sell, buy PopSockets!', location: 'PopSocket HQ')

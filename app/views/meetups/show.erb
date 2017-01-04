@@ -1,0 +1,20 @@
+<h1><%= @meetup.name %></h1>
+<h2><%= @meetup.description %></h2>
+<h3><%= @meetup.location %></h3>
+
+<div class="add-participant">
+  <h3>Join!</h3>
+  <form action="/meetups/:id" method="post">
+    <input type="join" name="join" id="join" />
+  </form>
+</div>
+
+<h3>Participants:</h3>
+<ul>
+  <% @participants.each do |participant| %>
+    <li>
+      <img src="<% participant.avatar_url %>">
+      <%= participant.username  %>
+    </li>
+  <% end %>
+</ul>

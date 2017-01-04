@@ -33,5 +33,25 @@ get '/sign_out' do
 end
 
 get '/meetups' do
+  @meetups = Meetup.all
+
   erb :'meetups/index'
+end
+
+get '/meetups/:id' do
+  id = params[:id]
+  @meetup = Meetup.find(id)
+  @description = @meetup.description
+  @location = @meetup.location
+  @participants = @meetup.participants
+
+
+  erb :'meetups/show'
+end
+
+post '/meetups/:id' do
+  @participant = Participant.create(user: params['user'], meetup: params['meetup'])
+  @participants = Participant.all
+
+  erb :'meetups/show'
 end
