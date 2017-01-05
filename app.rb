@@ -38,6 +38,17 @@ get '/meetups' do
   erb :'meetups/index'
 end
 
+get '/meetups/new' do
+
+  erb :'meetups/new'
+end
+
+post '/meetups/new' do
+  Meetup.create(name: params['name'], description: params['description'], location: params['location'])
+
+  redirect '/meetups'
+end
+
 get '/meetups/:id' do
   id = params[:id]
   @meetup = Meetup.find(id)
@@ -50,8 +61,9 @@ get '/meetups/:id' do
 end
 
 post '/meetups/:id' do
-  @participant = Participant.create(user: params['user'], meetup: params['meetup'])
+  @meetup_id = params[:id]
+  @participant = Participant.create(user_id: session[:user_id], meetup_id: @meetup_id)
   @participants = Participant.all
 
-  erb :'meetups/show'
+  redirect "/meetups/#{@meetup_id}"
 end
